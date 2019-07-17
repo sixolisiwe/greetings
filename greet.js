@@ -1,18 +1,20 @@
 
-function FactoryGreet(nameList, name) {
+function FactoryGreet(nameList) {
     // var name = ""; // global variable
 
     // var Language = []; // global variable
 
-    var namesGreeted = {} || namesGreeted[nameList];
+    var namesGreeted = {} || nameList;
 
     var greetCount = 0;
 
     function setName(nameVal) {
         var name = nameVal.charAt(0).toUpperCase() + nameVal.substring(1);  
+       
 
         if (namesGreeted[nameList] === undefined) {
             namesGreeted['name'] = name;
+            localStorage.setItem(name, 1);
         }
         else {
             namesGreeted[nameList] = 0;
@@ -27,36 +29,32 @@ function FactoryGreet(nameList, name) {
         return "Hello, " + namesGreeted.name;
     }
     function XhosaGreet() {
+        
         return "Mholo, " + namesGreeted.name;
     }
     function AfrikaansGreet() {
         return "Hallo, " + namesGreeted.name;
     }
 
-    // function getLanguage() {
-
-    //     return Language;
-    // }
     function setCount() {
-        console.log(getName());
-            greetCount++
+    
+       greetCount++;
     }
 
 
     function getCount() {
-        return greetCount;
+        return localStorage.length;
     }
 
     return {
         setName,
         getName,
-        // getLanguage,
         setCount,
         getCount,
         EnglishGreet,
         XhosaGreet,
         AfrikaansGreet,
-
+        greetCount
     }
 
 }
