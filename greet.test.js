@@ -3,7 +3,7 @@ describe("greeting", function (namesGreeted) {
         var greetInstance = FactoryGreet();
         greetInstance.setName("Siwe");
 
-        assert.deepEqual({ name: "Siwe" }, greetInstance.getName())
+        assert.deepEqual({Siwe: 0}, greetInstance.getName())
 
     })
 
@@ -11,46 +11,73 @@ describe("greeting", function (namesGreeted) {
         var greetInstance = FactoryGreet();
         greetInstance.setName("1");
 
-        assert.deepEqual({ name: "1" }, greetInstance.getName())
+        assert.deepEqual({ 1: 0 }, greetInstance.getName())
 
     })
 
     it("should greet in English when the English radio button is selected", function () {
         // var greetInstance = FactoryGreet();
         var names = FactoryGreet()
-
-        //  var name = "Siwe";
+        var name = "Siwe";
+        // var EnglishGreet = "Hello ,"
         names.setName("Siwe");
 
-        assert.equal("Hello, Siwe", names.EnglishGreet())
+        assert.equal("Hello, Siwe", names.EnglishGreet(name))
 
 
     })
+    it("should greet in Xhosa when the Xhosa radio button is selected", function () {
+        // var greetInstance = FactoryGreet();
+        var names = FactoryGreet()
+        var name = "Victoria";
+        names.setName("Victoria");
 
+
+        assert.equal("Mholo, Victoria", names.XhosaGreet(name))
+
+
+    })
+    it("should greet in Afrikaans when the Afrikaans radio button is selected", function () {
+        // var greetInstance = FactoryGreet();
+        var names = FactoryGreet()
+
+         var name = "Sir";
+        names.setName("Sir");
+
+        assert.equal("Hallo, Sir", names.AfrikaansGreet(name))
+
+
+    })
 
     it("should return total number of names greeted", function () {
        
         var names = FactoryGreet()
 
         //  var name = "Siwe";
-        // names.setName("Siwe");
-        names.setCount("Siwe");
+        names.setName("Siwe");
+        names.getCount("Siwe");
+       
+
 
         assert.equal(1, names.getCount())
 
 
     })
-    it("should return total number of names greeted", function () {
+    it("should only allow Siwe to be greeted once", function () {
       
         var names = FactoryGreet()
 
       
         names.setName("Siwe");
         names.setName("Siwe");
-        names.setCount(1);
-        names.setCount(1);
+        names.setName("Siwe");
+        names.getCount("Siwe");
+        names.getCount("Siwe");
+        names.getCount("Siwe");
+        
+      
 
-        assert.equal(2, names.getCount())
+        assert.equal(1, names.getCount())
 
 })
 })
