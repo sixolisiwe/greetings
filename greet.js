@@ -11,7 +11,7 @@ function FactoryGreet(nameList) {
     function setName(nameVal) {
         var name = nameVal.charAt(0).toUpperCase() + nameVal.slice(1);  
     
-        if (namesGreeted[name] === undefined) {
+        if (namesGreeted[name] === undefined && name !== "") {
             namesGreeted[name] = 0; 
         }
       return namesGreeted
@@ -36,15 +36,15 @@ function FactoryGreet(nameList) {
     function getName() {
         return namesGreeted;
     }
-    //   console.log(namesGreeted)
+  
     return {
         setName,
         getName,
         getCount,
         EnglishGreet,
         XhosaGreet,
-        AfrikaansGreet
-       
+        AfrikaansGreet,
+      
     }
 
 }
