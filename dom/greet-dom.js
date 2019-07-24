@@ -18,9 +18,6 @@ var countResetElem = document.querySelector(".btnReset");
 
 let greet = FactoryGreet(storeNames);
 
-
-
-
 greetingsElem.innerHTML = greet.getCount();
 
 function myFunction() {
@@ -29,29 +26,36 @@ function myFunction() {
     var name = myTextboxVal.charAt(0).toUpperCase() + myTextboxVal.slice(1);
      greet.setName(name);// assigning my textbox value
 
+     if(RadioItemType[0].checked === false && RadioItemType[1].checked === false && RadioItemType[2].checked === false) {
+        document.getElementById("L1").innerHTML = "please enter a name and select a language";
+        return false;
+    }
+
+
     for (let i = 0; i < RadioItemType.length; i++) {
         var elem = RadioItemType[i];
         if (elem.checked) {
            
             if (elem.value === "English") {
                 document.getElementById("L1").innerHTML = greet.EnglishGreet(name);
-
+                
             }
            
-            if (elem.value === "Xhosa") {
+            else if (elem.value === "Xhosa") {
                 document.getElementById("L1").innerHTML = greet.XhosaGreet(name);
-
+               
             }
             
 
-            if (elem.value === "Afrikaans") {
+            else if (elem.value === "Afrikaans") {
                 document.getElementById("L1").innerHTML = greet.AfrikaansGreet(name);
-
+                
             }
             
             increment();
         }
         
+    
     }
 
 }
@@ -62,14 +66,11 @@ function increment() {
     greet.setName(myTextboxVal);// assigning my textbox value
     var RadioItemType = document.querySelectorAll(".RadioItemType").value;
     
-    if (myTextboxVal === undefined || myTextboxVal === '') {
+    if (myTextboxVal === undefined || myTextboxVal === '' ) {
         document.getElementById("L1").innerHTML = "No name entered";
         
-    }
-   
-    if(RadioItemType === false){
-        document.getElementById("L1").innerHTML = "please enter a name or select a language";
-    }
+    } 
+
     
     localStorage['name'] = JSON.stringify(greet.getName())
    

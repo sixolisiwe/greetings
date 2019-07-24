@@ -63,12 +63,25 @@ describe("greeting", function (namesGreeted) {
         var names = FactoryGreet()
 
         names.setName("Siwe");
-        names.setName ("dfjk")
+        names.setName ("dfjk");
 
         assert.equal(2, names.getCount())
 
 
     })
+    it("should return total number of names greeted", function () {
+       
+        var names = FactoryGreet()
+
+        names.setName("Siwe");
+        names.setName ("dfjk");
+        names.setName("Jason");
+
+        assert.equal(3, names.getCount())
+
+
+    })
+
 
     it("should only allow Siwe to be greeted once", function () {
       
